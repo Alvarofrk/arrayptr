@@ -8,6 +8,7 @@ int tam(int*,int);
 void cop(int ,int *,int*);
 int concatenar(int*,int*,int);
 char tam1(int *);
+void invptr(int *, int);
 
 int main(){
 	
@@ -36,6 +37,7 @@ int main(){
 	//cout<<"elementos de la lista : ";tam1(lista);
 	//cop(numE,lista,lista2);
 	//concatenar(lista,lista2,numE);
+	//inv(lista,numE);
 	return 0;
 }
 
@@ -54,8 +56,15 @@ int sumR(int* dl1, int nElem){
 }
 
 void inv(int*dl1,int nElem){
-	for(int i=nElem-1;i>=0;i--){
-		cout<<*(dl1+i)<<" ";
+	int x=0,y=0;
+	for(int i=0;i<nElem;i++){
+		x=*(dl1+i);
+		*(dl1+i)=*(dl1+nElem-1);
+		*(dl1+nElem-1)=x;
+		nElem--;
+	}
+	for(int i=0;i<nElem*2+1;i++){
+		cout<<*(dl1+i);
 	}
 }
 
@@ -101,4 +110,15 @@ int concatenar(int* l1, int* l2,int nElem){
 		cout<<*(l3+i)<<" ";
 	}
 	return *l3;
+}
+
+void invptr(int *dl1,int nElem){
+	int g;
+	int *final=(dl1+nElem-1);
+	for(; final>=dl1;dl1++){
+		g=*dl1;
+		*dl1=*final;
+		*final=g;
+		final--;
+	}
 }
